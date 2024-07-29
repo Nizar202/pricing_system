@@ -1,0 +1,16 @@
+<!-- create_offer.html في مجلد templates/pricing -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Offer</title>
+</head>
+<body>
+    <h1>Create Offer</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

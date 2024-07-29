@@ -1,0 +1,17 @@
+<!-- pricing/templates/pricing/home.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pricing System</title>
+</head>
+<body>
+    <h1>Welcome to the Pricing System!</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ customer_form.as_p }}
+        {{ service_form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
