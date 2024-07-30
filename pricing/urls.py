@@ -1,11 +1,8 @@
-# urls.py
 from django.urls import path
-from pricing import views
+from . import views
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('products/', views.product_list, name='product_list'),
-    path('products/new/', views.create_product, name='create_product'),
-    path('customers/new/', views.create_customer, name='create_customer'),
-    path('offers/new/', views.create_offer, name='create_offer'),
+    path('login/', views.user_login, name='login'),  # مسار تسجيل الدخول
+    path('', views.home, name='home'),  # المسار الرئيسي للصفحة الرئيسية
+    path('create_offer/', views.create_offer, name='create_offer'),  # مسار إنشاء العرض المالي
 ]

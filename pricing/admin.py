@@ -1,6 +1,4 @@
-# pricing/admin.py
-
 from django.contrib import admin
-from .models import Product
+from .models import Offer  # افتراض أنك قمت بإنشاء نموذج Offer
 
-admin.site.register(Product)
+admin.site.register(Offer)

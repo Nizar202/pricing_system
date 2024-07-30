@@ -1,16 +1,46 @@
-<!-- create_offer.html في مجلد templates/pricing -->
+<!-- templates/pricing/create_offer.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Create Offer</title>
+    <script>
+        function calculateTotal() {
+            let total = 0;
+            document.querySelectorAll('.offer-item').forEach(function(row) {
+                const price = parseFloat(row.querySelector('.price').value) || 0;
+                const quantity = parseInt(row.querySelector('.quantity').value) || 0;
+                const itemTotal = price * quantity;
+                row.querySelector('.total').innerText = itemTotal.toFixed(2);
+                total += itemTotal;
+            });
+            document.getElementById('grand-total').innerText = total.toFixed(2);
+        }
+
+        function addRow() {
+            const formsetDiv = document.getElementById('formset');
+            const newRow = formsetDiv.children[0].cloneNode(true);
+            newRow.querySelectorAll('input').forEach(input => input.value = '');
+            formsetDiv.appendChild(newRow);
+        }
+    </script>
 </head>
 <body>
     <h1>Create Offer</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
+        {{ offer_form.as_p }}
+        <div id="formset">
+            {% for form in formset %}
+                <div class="offer-item">
+                    {{ form.service }} {{ form.price }} {{ form.quantity }}
+                    <span class="total">0.00</span>
+                    <button type="button" onclick="calculateTotal()">Calculate</button>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" onclick="addRow()">Add Row</button>
+        <p>Grand Total: <span id="grand-total">0.00</span></p>
+        <button type="submit">Submit</button>
     </form>
-    <a href="{% url 'home' %}">Back to Home</a>
 </body>
 </html>

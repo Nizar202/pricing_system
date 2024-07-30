@@ -50,6 +50,7 @@ DATABASES = {
 # settings.py
 TEMPLATES = [
     {
+
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
@@ -63,9 +64,14 @@ TEMPLATES = [
         },
     },
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
-LOGIN_REDIRECT_URL = 'purchase'
-LOGOUT_REDIRECT_URL = 'login'
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'
+
 
 
 # إعدادات الملفات الثابتة

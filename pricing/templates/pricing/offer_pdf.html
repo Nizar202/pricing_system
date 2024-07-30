@@ -1,0 +1,32 @@
+<!-- templates/pricing/offer_pdf.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Offer PDF</title>
+</head>
+<body>
+    <h2>Offer Details</h2>
+    <p>Association Name: {{ offer.association_name }}</p>
+    <p>Client Address: {{ offer.client_address }}</p>
+    <p>Date: {{ offer.date }}</p>
+    <p>Admin: {{ offer.admin.username }}</p>
+    <h3>Items</h3>
+    <table>
+        <tr>
+            <th>Service</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+        {% for item in offer.items.all %}
+        <tr>
+            <td>{{ item.service }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>Total Price: {{ offer.total_price }}</p>
+</body>
+</html>
